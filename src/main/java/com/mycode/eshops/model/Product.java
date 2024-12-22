@@ -22,10 +22,19 @@ public class Product {
     private int inventory;
     private String description;
 
+    /*
+    *
+    * cascade = CascadeType.ALL : delete product will also delete related category,
+    *
+    * */
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private Category category;
 
+    /*
+    * cascade = CascadeType.ALL : delete product will also delete related image, any operation on product will affect image
+    * orphanRemoval = true : remove image from collection also delete it from database
+    * */
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> images;
 

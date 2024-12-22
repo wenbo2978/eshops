@@ -18,7 +18,14 @@ public class Category {
     private Long id;
     private String name;
 
-
+    /*
+    *
+    * @JsonIgnore avoid circular reference :
+    *       a Category would include its products, and each Product would include its Category, creating an infinite loop.
+    *
+    * The mappedBy attribute tells JPA that the products collection in Category is mapped by the category field in the Product entity.
+    *
+    * */
     @JsonIgnore
     @OneToMany(mappedBy = "category")
     private List<Product> products;
