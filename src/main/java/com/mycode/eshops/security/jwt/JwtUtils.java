@@ -21,9 +21,10 @@ public class JwtUtils {
     private String jwtSecrete;
 
     @Value("${auth.token.expirationInMils}")
-    private String expirationTime;
+    private int expirationTime;
 
     public String generateTokenForUser(Authentication authentication){
+        System.out.println("expirationTime: " + expirationTime);
         ShopUserDetails userPrincipal = (ShopUserDetails) authentication.getPrincipal();
 
         List<String> roles = userPrincipal.getAuthorities()
