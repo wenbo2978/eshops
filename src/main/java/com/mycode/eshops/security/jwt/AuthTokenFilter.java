@@ -36,8 +36,9 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             System.out.println(jwt);
             if(StringUtils.hasText(jwt) && jwtUtils.validateToken(jwt)){
                 String username = jwtUtils.getUsernameFromToken(jwt);
-                UserDetails userDetails = shopUserDetailsService.loadUserByUsername(username);
+                UserDetails userDetails = shopUserDetailsService.loadUserByUsername(username);  //load user from database by userName
                 var auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                System.out.println("auth: " + auth);
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
             System.out.println("end try");
@@ -57,6 +58,10 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
+    /*
+    *
+    *
+    * */
     private String parseJwt(HttpServletRequest request){
         String headerAuth = request.getHeader("Authorization");
         if(StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer")){

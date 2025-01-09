@@ -16,6 +16,12 @@ import java.util.Map;
 
 @Component
 public class JwtAuthEntryPoint implements AuthenticationEntryPoint {
+
+
+    /*
+    *
+    * Triggered whenever an unauthenticated user tries to access a protected resource.
+    * */
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);

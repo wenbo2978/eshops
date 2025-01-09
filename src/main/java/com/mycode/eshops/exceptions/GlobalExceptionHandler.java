@@ -6,7 +6,12 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-
+/*
+*
+*
+* handle all Exceptions
+*
+* */
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
