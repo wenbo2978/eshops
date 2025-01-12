@@ -32,6 +32,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         System.out.println("----------------------");
         try {
             System.out.println("start try");
+            System.out.println(request.getHeader("Authorization"));
             String jwt = parseJwt(request);
             System.out.println(jwt);
             if(StringUtils.hasText(jwt) && jwtUtils.validateToken(jwt)){
